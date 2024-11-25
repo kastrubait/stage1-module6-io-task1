@@ -1,7 +1,7 @@
 package com.epam.mjc.io;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+//import java.nio.charset.StandardCharsets;
 
 public class FileReader {
 
@@ -10,7 +10,7 @@ public class FileReader {
         InputStream inputStream = getFileFromResourceAsStream(String.valueOf(file));
 
         Profile profile = null;
-        try (InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+        try (InputStreamReader streamReader = new InputStreamReader(inputStream);
              BufferedReader reader = new BufferedReader(streamReader)) {
 
             String line;
@@ -28,7 +28,6 @@ public class FileReader {
                     case "Age":
                         str = line.split(":")[1];
                         Integer age = Integer.valueOf(str.trim());
-                        System.out.println(age);
                         profile.setAge(age);
                         break;
                     case "Email":
