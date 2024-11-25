@@ -36,6 +36,8 @@ public class FileReader {
                         str = line.split(":")[1];
                         profile.setPhone(Long.valueOf(str.trim()));
                         break;
+                    default:
+                        break;
                 }
                 line = reader.readLine();
             }
@@ -44,15 +46,6 @@ public class FileReader {
             e.printStackTrace();
         }
         return profile;
-    }
-
-    public static void main(String[] args) {
-
-        File fileName = new File("Profile.txt");
-
-        FileReader fileReader = new FileReader();
-        Profile profile = fileReader.getDataFromFile(fileName);
-
     }
 
     private InputStream getFileFromResourceAsStream(String fileName) {
