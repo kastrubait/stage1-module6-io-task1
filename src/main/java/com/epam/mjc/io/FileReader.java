@@ -9,7 +9,7 @@ public class FileReader {
         InputStream inputStream = null;
         try {
             inputStream = getFileFromResourceAsStream(String.valueOf(file));
-        } catch (FileNotFoundException e) {
+        } catch (CustomRuntimeException e) {
             throw new RuntimeException(e);
         }
 
@@ -53,12 +53,12 @@ public class FileReader {
         return profile;
     }
 
-    private InputStream getFileFromResourceAsStream(String fileName) throws FileNotFoundException {
+    private InputStream getFileFromResourceAsStream(String fileName) throws CustomRuntimeException {
         InputStream inputStream;
         try {
             inputStream = new FileInputStream(fileName);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new CustomRuntimeException(e);
         }
         return inputStream;
     }
