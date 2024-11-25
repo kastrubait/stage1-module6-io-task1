@@ -6,7 +6,12 @@ public class FileReader {
 
     public Profile getDataFromFile(File file) {
 
-        InputStream inputStream = getFileFromResourceAsStream(String.valueOf(file));
+        InputStream inputStream = null;
+        try {
+            inputStream = getFileFromResourceAsStream(String.valueOf(file));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         Profile profile = null;
         try (InputStreamReader streamReader = new InputStreamReader(inputStream);
@@ -48,17 +53,13 @@ public class FileReader {
         return profile;
     }
 
-    private InputStream getFileFromResourceAsStream(String fileName) {
-
-        ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream(fileName);
-
-        if (inputStream == null) {
-            throw new IllegalArgumentException("file not found! " + fileName);
-        } else {
-            return inputStream;
+    private InputStream getFileFromResourceAsStream(String fileName) throws FileNotFoundException {
+        InputStream inputStream;
+        try {
+            inputStream = new FileInputStream(fileName);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
-
+        return inputStream;
     }
-
 }
