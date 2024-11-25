@@ -10,6 +10,7 @@ public class FileReader {
         try {
             inputStream = getFileFromResourceAsStream(String.valueOf(file));
         } catch (CustomRuntimeException e) {
+            return new Profile();
         }
 
         Profile profile = null;
