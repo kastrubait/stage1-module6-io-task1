@@ -1,7 +1,6 @@
 package com.epam.mjc.io;
 
 import java.io.*;
-//import java.nio.charset.StandardCharsets;
 
 public class FileReader {
 
@@ -14,7 +13,6 @@ public class FileReader {
              BufferedReader reader = new BufferedReader(streamReader)) {
 
             String line;
-            String[] productData;
             line = reader.readLine();
             profile = new Profile();
             while (line != null) {
